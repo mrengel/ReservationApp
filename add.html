@@ -1,0 +1,98 @@
+<!Doctype html>
+<html>
+<head>
+		<title> Hot Restaurant </title>
+		<!-- Linking Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<!-- Linking CSS sheet -->
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<!-- Linking JQUERY -->
+		<script src="jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<!-- space above jumbotron -->
+<div class="col-lg-12 col-md-12" id="topMargin">
+</div>
+
+<div class= "container">
+	<div class="jumbotron">
+		  <h1 class="display-3">Hot Restaurant</h1>
+		  <p class="lead">Enter your information to reserve your spot!</p>
+		  <hr class="my-4">
+		  <p class="lead">
+		    <a class="btn btn-dark btn-lg" href="/" role="button" id="home-btn">Home</a>
+		    <a class="btn btn-dark btn-lg" href="/table" role="button" id="view-btn">View Reservations</a>
+ 		  </p>
+	</div>
+</div>
+<div class="container">
+		
+		<div class="input-group">
+		<span class="input-group-addon" id="#Name">Name</span>
+		  <input type="text" class="form-control" placeholder="Your Name" aria-label="Recipient's Name" aria-describedby="basic-addon2">
+		  
+		</div>
+		<br>
+		<div class="input-group">
+		<span class="input-group-addon" id="#PhoneNumber">Phone Number</span>
+		  <input type="text" class="form-control" placeholder="(111)111-1111" aria-label="Recipient's Phone Number" aria-describedby="basic-addon2">
+		  
+		</div>
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon" id="#email"">E-mail</span>
+		  <input type="text" class="form-control" placeholder="example@gmail.com" aria-label="Recipient's E-mail" aria-describedby="basic-addon2">
+		  
+		</div>
+		<br>
+		<div class="input-group">
+		   <span class="input-group-addon" id="#uniqueid">Unique ID</span>
+		  <input type="text" class="form-control" placeholder="enter anything" aria-label="Unique ID" aria-describedby="basic-addon2">
+		  
+		</div>
+		<br>
+		<button type="button" class="btn btn-secondary" id="submit">Submit</button>
+</div>
+<br>
+<br>
+<div class="container">
+	<footer>
+		<a href="" class="links"> API Table Link</a> | <a href="" class="links"> API Wait List </a>
+	</footer>
+</div>
+<script>
+$("#submit").on("click", function(event) {
+      event.preventDefault();
+      // Here we grab the form elements
+      var newreservation = {
+        name: $("#Name").val().trim(),
+        phoneNumber: $("#PhoneNumber").val().trim(),
+        customerEmail: $("#email").val().trim(),
+        customerID: $("#uniqueid").val().trim()
+      };
+      console.log(newreservation);
+     
+      $.post("/api/new", newreservation,
+        function(data) {
+          // If a table is available... tell user they are booked.
+          if (data) {
+            alert("Yay! You are officially booked!");
+          }
+          // If a table is available... tell user they on the waiting list.
+          else {
+            alert("Sorry you are on the wait list");
+          }
+          // Clear the form when submitting
+          $("#Name").val("");
+          $("#PhoneNumber").val("");
+          $("#email").val("");
+          $("#uniqueid").val("");
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

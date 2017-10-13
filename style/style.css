@@ -1,0 +1,28 @@
+body {
+	background-image: url("background.jpg");
+                     /* <------ */
+  
+}
+.jumbotron {
+	background-color:#c04300;
+	color: white;
+	text-align:center;
+	border: 1px solid gray;
+}
+#topMargin {
+	height:30px;
+}
+
+footer {
+
+  
+  background-color: #5e1b00;
+  text-align: center;
+  border: 1px solid #5e1b00;
+}
+.links {
+	color:white;
+}
+.form-control{
+	text-align:right;
+}
